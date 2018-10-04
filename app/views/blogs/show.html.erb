@@ -1,20 +1,18 @@
 <p id="notice"><%= notice %></p>
+
 <div class="container">
   <%= link_to 'Back', blogs_path, class: 'btn btn-primary my-4' %>
   <div class="card" style="width: 18rem;">
-  <%= image_tag @blog.image,class: 'img-responsive', height: '301px' %>
+  <%= image_tag @blog.image, class: 'img-responsive', height: '300px' %>
   <div class="card-body">
     <h5 class="card-title"><%= @blog.title %></h5>
     <p class="card-text"><%= @blog.body %></p>
   </div>
-
-  <div class="card-footer">
-    <% if user_signed_in? %>
-      <% if @blog.user_id == current_user.id  %>
+    <% if user_signed_in? && @blog.user_id == current_user.id %>
+      <div class="card-footer">
         <%= link_to 'Edit', edit_blog_path(@blog) %>
-        <%= link_to 'Delete', @blog, method: :delete, data:{confirm: 'Are you sure'} %>
-      <% end %>
+        <%= link_to 'Delete', @blog, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     <% end %>
-  </div>
 </div>
 </div>

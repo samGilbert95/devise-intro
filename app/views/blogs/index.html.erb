@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="text-center">Blogs</h1>
 
 <div class="container">
-  <h1 class='text-center'>Blogs</h1>
-  <table class='table table-striped'>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Title</th>
@@ -18,19 +18,16 @@
         <tr>
           <td><%= blog.title %></td>
           <td><%= blog.body %></td>
-          <td><%= blog.user.email%></td>
+          <td><%= blog.user_id %></td>
           <td><%= link_to 'Show', blog %></td>
           <% if user_signed_in? %>
-            <% if current_user.id == blog.user_id %>
-              <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-              <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if blog.user_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+            <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
 </div>
